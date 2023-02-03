@@ -1,6 +1,8 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { DoubleSide } from "three";
+import Formes from "./Formes.png"
+import Formes2 from "./Formes2.png"
 
 // Drei is a really helpful library
 // It has helpers for react-three-fiber
@@ -15,7 +17,8 @@ import "./style.css";
 export default function App() {
   return (
     <div>
-      <Canvas style={{ height: "100vh", width: "100vw" }}>
+    <div style={{ width: '60%', height: '100%', float: 'left' }}>
+      <Canvas style={{ height: "100vh", width: "50vw" }}>
         {/*
            A group is used for grouping, kind og like
           groups in SVGs. The positioning of elements
@@ -25,9 +28,7 @@ export default function App() {
         <group>
           {/* All these are in the same group */}
           <GreenSquare />
-          <ToolTip1 />
-          <ToolTip2 />
-          <ToolTip3 />
+          {/* <ToolTip1 /> */}
         </group>
         {/* Let there be light! */}
         <ambientLight />
@@ -48,6 +49,40 @@ export default function App() {
         />
       </Canvas>
     </div>
+     <div style={{ width: '40%', height: '80%', float: 'left' }}>
+     <div className="menu">
+        <div className="menu-title">Formes</div>
+        <div className="form-items">
+          <img src={Formes} width={"40px"}></img>
+          <img src={Formes2} width={"40px"}></img>
+          <img src={Formes} width={"40px"}></img>
+          <img src={Formes} width={"40px"}></img>
+          <img src={Formes} width={"40px"}></img>
+     
+        </div>
+        <div className="menu-title">Surface disponible</div>
+        <div className="dimensions">
+          <button>Longueur en cm</button>
+          <button>Largeur en cm</button>
+        </div>
+        <div className="menu-title">Type de sol</div>
+        <div className="dimensions">
+          <button>Sol sableaux</button>
+          <button>Sol limoneux</button>
+          <button>Sol argileux</button>
+          <button>Sol humidifié</button>
+        </div>
+        <div className="menu-title">Exposition</div>
+        <div className="dimensions">
+          <button>Plein soleil</button>
+          <button>Ombre</button>
+          <button>Mi-ombre</button>
+          <button>Soleil partiel</button>
+        </div>
+      </div>
+   </div>
+    </div>
+    
   );
 }
 
@@ -88,28 +123,12 @@ function GreenSquare() {
 function ToolTip1() {
   return (
     <Html center position={[-1, 1, -1]}>
-      <div>
+      <div className="menu">
         <p>Formes</p>
         <p>Surface disponible</p>
         <p>Type de sol</p>
         <p>Exposition</p>
       </div>
-    </Html>
-  );
-}
-
-function ToolTip2() {
-  return (
-    <Html center position={[1, -1, -1]}>
-      <p>Scroll to zoom in and out</p>
-    </Html>
-  );
-}
-
-function ToolTip3() {
-  return (
-    <Html center position={[-1, 1, 1]}>
-      <p>{"<== Code's on the left, with details in the comments"}</p>
     </Html>
   );
 }
