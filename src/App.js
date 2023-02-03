@@ -3,6 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import { DoubleSide } from "three";
 import Formes from "./Formes.png"
 import Formes2 from "./Formes2.png"
+import { Sky,Clone, useGLTF } from '@react-three/drei';
+import { Vector3 } from 'three';
 
 // Drei is a really helpful library
 // It has helpers for react-three-fiber
@@ -18,17 +20,21 @@ export default function App() {
   return (
     <div>
     <div style={{ width: '60%', height: '100%', float: 'left' }}>
-      <Canvas style={{ height: "100vh", width: "50vw" }}>
+      <Canvas style={{ height: "100vh", width: "100vw" }}>
         {/*
-           A group is used for grouping, kind og like
+          A group is used for grouping, kind og like
           groups in SVGs. The positioning of elements
           inside a group is relative to the group's
           position.
         */}
+        <Sky sunPosition={new Vector3(100, 10, 100)} />
         <group>
           {/* All these are in the same group */}
           <GreenSquare />
-          {/* <ToolTip1 /> */}
+          <Tree />
+          {/* <ToolTip1 />
+          <ToolTip2 /> */}
+          {/* <ToolTip3 /> */}
         </group>
         {/* Let there be light! */}
         <ambientLight />
@@ -44,7 +50,7 @@ export default function App() {
           like we would do for any React component
         */}
         <OrbitControls
-             enableZoom={false}
+             enableZoom={true}
         
         />
       </Canvas>
@@ -98,13 +104,12 @@ function GreenSquare() {
     // It's rotated by 90 degrees along the X-axis
     // This is because, by default, planes are rendered
     // in the X-Y plane, where Y is the up direction
-    <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[1, 1, 1]}>
+    <mesh position={[-4, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[1, 1, 1]}>
       {/*
         The thing that gives the mesh its shape
         In this case the shape is a flat plane
       */}
-      <cylinderBufferGeometry attach="geometry" args={[1, 1, 2, 32]} />
-      <planeBufferGeometry/>
+      <boxGeometry args={[5, 5, 0.2]} />
       {/*
         The material gives a mesh its texture or look.
         In this case, it is just a uniform green
@@ -114,21 +119,61 @@ function GreenSquare() {
   );
 }
 
+function Plant() {
+  return (
+    <mesh position={[-10, 0.35, 0]} receiveShadow castShadow>
+      <boxGeometry args={[0.15, 0.5, 0.2]} />
+      <meshLambertMaterial color={"darkGreen"} />
+    </mesh>
+  );
+};
 // The rest of the components are just tooltips
 // Drei's Html component lets you render any HTML
 // inside the 3d scene. It follows the same rules
 // as everything else when it comes to positioning,
 // but is not actually rendered inside the canvas
 
-function ToolTip1() {
+// function ToolTip1() {
+//   return (
+//     <Html center position={[-1, 1, -1]}>
+//       <div>
+//         <p>Formes</p>
+//         <p>Surface disponible</p>
+//         <p>Type de sol</p>
+//         <p>Exposition</p>
+//       </div>
+//     </Html>
+//   );
+// }
+
+// function ToolTip2() {
+//   return (
+//     <Html center position={[1, -1, -1]}>
+//       <p>Scroll to zoom in and out</p>
+//     </Html>
+//   );
+// }
+
+// function ToolTip3() {
+//   return (
+//     <Html center position={[-1, 1, 1]}>
+//       <p>{"<== Code's on the left, with details in the comments"}</p>
+//     </Html>
+//   );
+// }
+
+export function Tree({ position, rotation }) {
+  const tree = useGLTF('https://douges.dev/static/tree.glb');
+
   return (
-    <Html center position={[-1, 1, -1]}>
-      <div className="menu">
-        <p>Formes</p>
-        <p>Surface disponible</p>
-        <p>Type de sol</p>
-        <p>Exposition</p>
-      </div>
-    </Html>
+    <group name="tree" rotation={rotation} position={[-4, 0, 0]}>
+      <Clone
+        receiveShadow
+        castShadow
+        object={tree.nodes.trunk}
+        inject={<meshBasicMaterial color="black" />}
+      />
+      <Clone receiveShadow castShadow object={tree.nodes.foliage}/>
+    </group>
   );
 }
