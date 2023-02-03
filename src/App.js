@@ -42,7 +42,10 @@ export default function App() {
           We've associated our React ref with it
           like we would do for any React component
         */}
-        <OrbitControls />
+        <OrbitControls
+             enableZoom={false}
+        
+        />
       </Canvas>
     </div>
   );
