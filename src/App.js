@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { DoubleSide } from "three";
 import Formes from "./Formes.png"
 import Formes2 from "./Formes2.png"
-import { Sky,Clone, useGLTF } from '@react-three/drei';
-import { Vector3 } from 'three';
+import { Html, Sky, Clone, useGLTF, OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Vector3, BoxBufferGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, TextureLoader } from 'three';
 
 // Drei is a really helpful library
 // It has helpers for react-three-fiber
-import { Html, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+
 
 import "./style.css";
 
@@ -17,78 +17,124 @@ import "./style.css";
 // of the hard work of setting up the scene, renderer
 // and other core components of Three.js
 export default function App() {
+
+  const [shape, setShape] = useState('cylinder')
+  const meshRef = useRef()
+  const [texture, setTexture] = useState(null);
+  const textureLoader = new TextureLoader();
+  const [size, setSize] = useState(1);
+
+  const changeShape = () => {
+    const geometry = shape === 'cylinder' ? new CylinderGeometry(1, 1, 0.3, 32) : new BoxBufferGeometry(1.7, 0.3, 1)
+    meshRef.current.geometry.dispose()
+    meshRef.current.geometry = geometry
+    setShape(shape === 'cylinder' ? 'box' : 'cylinder')
+  }
+
+  useEffect(() => {
+    textureLoader.load(
+      "./Grass004_1K_Color.jpg",
+      (loadedTexture) => {
+        setTexture(loadedTexture);
+        console.log(texture)
+      },
+
+      undefined,
+      (error) => {
+        console.error(error);
+      }
+    );
+  }, []);
+
   return (
     <div>
-    <div style={{ width: '60%', height: '100%', float: 'left' }}>
-      <Canvas style={{ height: "100vh", width: "100vw" }}>
-        {/*
+      <div style={{ width: '60%', height: '100%', float: 'left' }}>
+        <Canvas style={{ height: "100vh", width: "100vw" }}>
+          {/*
           A group is used for grouping, kind og like
           groups in SVGs. The positioning of elements
           inside a group is relative to the group's
           position.
         */}
-        <Sky sunPosition={new Vector3(100, 10, 100)} />
-        <group>
-          {/* All these are in the same group */}
-          <GreenSquare />
-          <Tree />
-          {/* <ToolTip1 />
+          <Sky sunPosition={new Vector3(100, 10, 100)} />
+          <group>
+            {/* All these are in the same group */}
+            <PerspectiveCamera position={[2, 2, 2]} makeDefault />
+            <OrbitControls makeDefault />
+            <mesh ref={meshRef} scale={[size, 1, 1]}>
+              {shape === 'cylinder' ? (
+                <cylinderGeometry
+                  args={[1, 1, 0.3, 32]}
+                />
+              ) : (
+                  <boxBufferGeometry
+                    args={[1.7, 0.3, 1]}
+                  />
+                )}
+              <meshBasicMaterial map={texture} />
+            </mesh>
+            {/* <ToolTip1 />
           <ToolTip2 /> */}
-          {/* <ToolTip3 /> */}
-        </group>
-        {/* Let there be light! */}
-        <ambientLight />
-        {/*
+            {/* <ToolTip3 /> */}
+          </group>
+          {/* Let there be light! */}
+          <ambientLight />
+          {/*
           Use a PerspectiveCamera.
           PerspectiveCameras work like real works cameras
           and provide depth perception.
         */}
-        <PerspectiveCamera position={[2, 2, 2]} makeDefault />
-        {/*
+          {/*
           This lets you rotate the camera.
           We've associated our React ref with it
           like we would do for any React component
         */}
-        <OrbitControls
-             enableZoom={true}
-        
-        />
-      </Canvas>
-    </div>
-     <div style={{ width: '40%', height: '80%', float: 'left' }}>
-     <div className="menu">
-        <div className="menu-title">Formes</div>
-        <div className="form-items">
-          <img src={Formes} width={"40px"}></img>
-          <img src={Formes2} width={"40px"}></img>
-          <img src={Formes} width={"40px"}></img>
-          <img src={Formes} width={"40px"}></img>
-          <img src={Formes} width={"40px"}></img>
-     
-        </div>
-        <div className="menu-title">Surface disponible</div>
-        <div className="dimensions">
-          <button>Longueur en cm</button>
-          <button>Largeur en cm</button>
-        </div>
-        <div className="menu-title">Type de sol</div>
-        <div className="dimensions">
-          <button>Sol sableaux</button>
-          <button>Sol limoneux</button>
-          <button>Sol argileux</button>
-          <button>Sol humidifié</button>
-        </div>
-        <div className="menu-title">Exposition</div>
-        <div className="dimensions">
-          <button>Plein soleil</button>
-          <button>Ombre</button>
-          <button>Mi-ombre</button>
-          <button>Soleil partiel</button>
+
+        </Canvas>
+      </div>
+      <div style={{ width: '40%', height: '80%', float: 'left' }}>
+        <div className="menu">
+          <div className="menu-title">Formes</div>
+          <div className="form-items">
+            <img onClick={changeShape} src={Formes} width={"40px"}></img>
+            <img src={Formes2} width={"40px"}></img>
+            <img src={Formes} width={"40px"}></img>
+            <img src={Formes} width={"40px"}></img>
+            <img src={Formes} width={"40px"}></img>
+
+          </div>
+          <div className="menu-title">Surface disponible</div>
+          <div className="dimensions">
+            <button>Longueur en cm</button>
+            <button>Largeur en cm</button>
+            <input
+              type="range"
+              min={0.1}
+              max={2}
+              step={0.1}
+              value={size}
+              style={{ position: 'absolute', left: '150px', top: '20px' }}
+              onChange={(e) => setSize(e.target.value)}
+            />
+          </div>
+          <div className="menu-title">Type de sol</div>
+          <div className="dimensions">
+            <button>Sol sableaux</button>
+            <button>Sol limoneux</button>
+            <button>Sol argileux</button>
+            <button>Sol humidifié</button>
+          </div>
+          <div className="menu-title">Exposition</div>
+          <div className="dimensions">
+            <button>Plein soleil</button>
+            <button>Ombre</button>
+            <button>Mi-ombre</button>
+            <button>Soleil partiel</button>
+          </div>
         </div>
       </div>
-   </div>
     </div>
-    
+
   );
 }
 
@@ -173,7 +219,7 @@ export function Tree({ position, rotation }) {
         object={tree.nodes.trunk}
         inject={<meshBasicMaterial color="black" />}
       />
-      <Clone receiveShadow castShadow object={tree.nodes.foliage}/>
+      <Clone receiveShadow castShadow object={tree.nodes.foliage} />
     </group>
   );
 }
