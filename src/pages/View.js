@@ -9,14 +9,18 @@ import Texture from "../assets/Grass004_1K_Color.jpg"
 import huaranhuay from './models/huaranhuay.glb'
 import pisonay from './models/pisonay.glb'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import dataToImport from './data.json';
+import mydata from './data.json';
 
 
 const View = () => {
+    const [jsonData, setJsonData] = useState(null);
     const [shape, setShape] = useState('cylinder')
     const meshRef = useRef()
     const [texture, setTexture] = useState(null);
     const textureLoader = new TextureLoader();
     const [size, setSize] = useState(1);
+
 
     const changeShape = () => {
         const geometry = shape === 'cylinder' ? new CylinderGeometry(1, 1, 0.3, 32) : new BoxBufferGeometry(1.7, 0.3, 1)
@@ -25,19 +29,40 @@ const View = () => {
         setShape(shape === 'cylinder' ? 'box' : 'cylinder')
     }
 
+    // useEffect(() => {
+    //     console.log("json ", jsonData)
+        
+    //     textureLoader.load(
+    //         Texture,
+    //         (loadedTexture) => {
+    //             setTexture(loadedTexture);
+    //         },
+
+    //         undefined,
+    //         (error) => {
+    //             console.error(error);
+    //         }
+    //     );
+    // }, []);
+
     useEffect(() => {
+        console.log("json ", mydata)
+    
+    
         textureLoader.load(
-            Texture,
+            mydata.env.myTexture,
             (loadedTexture) => {
                 setTexture(loadedTexture);
+                // console.log(texture)
             },
-
+        
             undefined,
             (error) => {
                 console.error(error);
             }
-        );
-    }, []);
+            );
+        
+        }, []);
 
     const [isShown, setIsShown] = useState(false);
 
@@ -51,10 +76,14 @@ const View = () => {
             <div style={{ width: '60%', height: '100%', float: 'left' }}>
                 <Header />
                 <Canvas style={{ height: "100vh", width: "100vw" }}>
-                    <Sky sunPosition={new Vector3(100, 10, 100)} />
-                    <group>
+                <Sky sunPosition={new Vector3(
+                        mydata.env.light.var1, 
+                        mydata.env.light.var2, 
+                        mydata.env.light.var3, 
+                        )} />                    
+                        <group>
                         {/* All these are in the same group */}
-                        <PerspectiveCamera position={[2, 2, 2]} makeDefault />
+                        <PerspectiveCamera position={mydata.env.camera.position} makeDefault />
                         <OrbitControls makeDefault />
                         <mesh ref={meshRef} scale={[size, size, size]}>
                             <meshBasicMaterial map={texture} />
