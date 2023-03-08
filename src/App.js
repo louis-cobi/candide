@@ -10,6 +10,7 @@ import huaranhuay from './models/huaranhuay.glb'
 import pisonay from './models/pisonay.glb'
 
 import dataToImport from './data.json';
+import mydata from './data.json';
 
 
 import "./style.css";
@@ -31,20 +32,10 @@ export default function App() {
     setShape(shape === 'cylinder' ? 'box' : 'cylinder')
   }
 
-  const getData = () => {
-    fetch('./data.json')
-    .then(resp1 => resp1.json())
-    .then(data => {
-      console.log("data : ", data);
-      setJsonData(data); })
-    .catch(error => {
-      console.error('Error:', error);
-    }, []);
-  }
+
 
   useEffect(() => {
-    getData();
-    console.log("json ", jsonData)
+    console.log("json ", mydata)
 
 
     textureLoader.load(
@@ -76,7 +67,7 @@ export default function App() {
           <Sky sunPosition={new Vector3(100, 10, 100)} />
           <group>
             {/* All these are in the same group */}
-            <PerspectiveCamera position={[2, 2, 2]} makeDefault />
+            <PerspectiveCamera position={mydata.env.camera.position} makeDefault />
             <OrbitControls makeDefault />
             <mesh ref={meshRef} scale={[size, 1, 1]}>
               {shape === 'cylinder' ? (
