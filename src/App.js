@@ -9,17 +9,20 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import huaranhuay from './models/huaranhuay.glb'
 import pisonay from './models/pisonay.glb'
 
+import dataToImport from './data.json';
 
 
 import "./style.css";
 
 export default function App() {
-
+  const [jsonData, setJsonData] = useState(null);
   const [shape, setShape] = useState('cylinder')
   const meshRef = useRef()
   const [texture, setTexture] = useState(null);
   const textureLoader = new TextureLoader();
   const [size, setSize] = useState(1);
+
+
 
   const changeShape = () => {
     const geometry = shape === 'cylinder' ? new CylinderGeometry(1, 1, 0.3, 32) : new BoxBufferGeometry(1.7, 0.3, 1)
@@ -28,7 +31,22 @@ export default function App() {
     setShape(shape === 'cylinder' ? 'box' : 'cylinder')
   }
 
+  const getData = () => {
+    fetch('./data.json')
+    .then(resp1 => resp1.json())
+    .then(data => {
+      console.log("data : ", data);
+      setJsonData(data); })
+    .catch(error => {
+      console.error('Error:', error);
+    }, []);
+  }
+
   useEffect(() => {
+    getData();
+    console.log("json ", jsonData)
+
+
     textureLoader.load(
       "./Grass004_1K_Color.jpg",
       (loadedTexture) => {
@@ -66,10 +84,10 @@ export default function App() {
                   args={[1, 1, 0.3, 32]}
                 />
               ) : (
-                  <boxBufferGeometry
-                    args={[1.7, 0.3, 1]}
-                  />
-                )}
+                <boxBufferGeometry
+                  args={[1.7, 0.3, 1]}
+                />
+              )}
               <meshBasicMaterial map={texture} />
             </mesh>
           </group>
@@ -123,6 +141,7 @@ export default function App() {
             <button onClick={handleClick}>Click</button>
             {isShown && <Box />}
           </div>
+
         </div>
       </div>
     </div>
