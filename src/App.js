@@ -13,6 +13,7 @@ import huaranhuay from './models/huaranhuay.glb'
 import pisonay from './models/pisonay.glb'
 
 import dataToImport from './data.json';
+import mydata from './data.json';
 
 
 import "./style.css";
