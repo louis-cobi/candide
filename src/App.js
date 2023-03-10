@@ -39,7 +39,7 @@ export default function App() {
 
 
     textureLoader.load(
-      "./Grass004_1K_Color.jpg",
+      mydata.env.myTexture,
       (loadedTexture) => {
         setTexture(loadedTexture);
         // console.log(texture)
@@ -64,7 +64,17 @@ export default function App() {
     <div>
       <div style={{ width: '60%', height: '100%', float: 'left' }}>
         <Canvas style={{ height: "100vh", width: "100vw" }}>
-          <Sky sunPosition={new Vector3(100, 10, 100)} />
+          {/*
+          A group is used for grouping, kind og like
+          groups in SVGs. The positioning of elements
+          inside a group is relative to the group's
+          position.
+        */}
+          <Sky sunPosition={new Vector3(
+            mydata.env.light.var1, 
+            mydata.env.light.var2, 
+            mydata.env.light.var3, 
+            )} />
           <group>
             {/* All these are in the same group */}
             <PerspectiveCamera position={mydata.env.camera.position} makeDefault />
