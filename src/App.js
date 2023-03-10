@@ -31,6 +31,87 @@ export default function App() {
   // const [texture, setTexture] = useState(null);
   // const textureLoader = new TextureLoader();
   // const [size, setSize] = useState(1);
+  // const [jsonData, setJsonData] = useState(null);
+  // const [shape, setShape] = useState('cylinder')
+  // const meshRef = useRef()
+  // const [texture, setTexture] = useState(null);
+  // const textureLoader = new TextureLoader();
+  // const [size, setSize] = useState(1);
+
+
+
+  // const changeShape = () => {
+  //   const geometry = shape === 'cylinder' ? new CylinderGeometry(1, 1, 0.3, 32) : new BoxBufferGeometry(1.7, 0.3, 1)
+  //   meshRef.current.geometry.dispose()
+  //   meshRef.current.geometry = geometry
+  //   setShape(shape === 'cylinder' ? 'box' : 'cylinder')
+  // }
+
+
+
+  // useEffect(() => {
+  //   console.log("json ", mydata)
+
+
+  //   textureLoader.load(
+  //     mydata.env.myTexture,
+  //     (loadedTexture) => {
+  //       setTexture(loadedTexture);
+  //       // console.log(texture)
+  //     },
+
+  //     undefined,
+  //     (error) => {
+  //       console.error(error);
+  //     }
+  //   );
+
+  // }, []);
+
+  // const [isShown, setIsShown] = useState(false);
+
+  // const handleClick = event => {
+  //   // toggle shown state
+  //   setIsShown(current => !current);
+  // };
+
+  // return (
+  //   <div>
+  //     <div style={{ width: '60%', height: '100%', float: 'left' }}>
+  //       <Canvas style={{ height: "100vh", width: "100vw" }}>
+  //         {/*
+  //         A group is used for grouping, kind og like
+  //         groups in SVGs. The positioning of elements
+  //         inside a group is relative to the group's
+  //         position.
+  //       */}
+  //         <Sky sunPosition={new Vector3(
+  //           mydata.env.light.var1, 
+  //           mydata.env.light.var2, 
+  //           mydata.env.light.var3, 
+  //           )} />
+  //         <group>
+  //           {/* All these are in the same group */}
+  //           <PerspectiveCamera position={mydata.env.camera.position} makeDefault />
+  //           <OrbitControls makeDefault />
+  //           <mesh ref={meshRef} scale={[size, 1, 1]}>
+  //             {shape === 'cylinder' ? (
+  //               <cylinderGeometry
+  //                 args={[1, 1, 0.3, 32]}
+  //               />
+  //             ) : (
+  //               <boxBufferGeometry
+  //                 args={[1.7, 0.3, 1]}
+  //               />
+  //             )}
+  //             <meshBasicMaterial map={texture} />
+  //           </mesh>
+  //         </group>
+  //         <ambientLight />
+  //         <MyModel />
+  //         <MySecondModel />
+  //       </Canvas>
+  //     </div>
 
 
 
