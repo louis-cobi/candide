@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "Voyage-Bold";
+  src: url("./assets/Voyage-Bold.woff");
+  src: url("./assets/Voyage-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Voyage-Bold";
+  src: url("./assets/Voyage-Bold.ttf");
+  src: url("./assets/Voyage-Bold.ttf") format("ttf");
+}
