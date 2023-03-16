@@ -41,5 +41,12 @@
     margin: 10px 0;
   }
 
+  .test {
+    margin: 10px 0;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    max-width: 10rem;
+  }
   
   

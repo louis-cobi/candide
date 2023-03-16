@@ -6,6 +6,10 @@ import { Html, Sky, Clone, useGLTF, OrbitControls, PerspectiveCamera } from '@re
 import { Vector3, BoxBufferGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, TextureLoader } from 'three';
 import Header from "../components/Header";
 import Texture from "../assets/Grass004_1K_Color.jpg"
+import huaranhuay from './models/huaranhuay.glb'
+import pisonay from './models/pisonay.glb'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+
 
 const View = () => {
     const [shape, setShape] = useState('cylinder')
@@ -35,6 +39,13 @@ const View = () => {
         );
     }, []);
 
+    const [isShown, setIsShown] = useState(false);
+
+    const handleClick = event => {
+        // toggle shown state
+        setIsShown(current => !current);
+    };
+
     return (
         <div>
             <div style={{ width: '60%', height: '100%', float: 'left' }}>
@@ -58,6 +69,8 @@ const View = () => {
                                 )}
                         </mesh>
                         <ambientLight />
+                        <MyModel />
+                        <MySecondModel />
                     </group>
                 </Canvas>
             </div>
@@ -100,11 +113,38 @@ const View = () => {
                         <button>Mi-ombre</button>
                         <button>Soleil partiel</button>
                     </div>
+                    <div className="menu-title">Information</div>
+                    <div className="dimensions">
+                        <button onClick={handleClick}>Click</button>
+                        {isShown && <Box />}
+                    </div>
                 </div>
             </div>
         </div>
 
     );
 }
+export function MyModel() {
+    const { scene } = useGLTF(huaranhuay)
+    return (
+        <primitive object={scene} position={[0, 0, 0]} /> 
+        
+        )
+    }
+    
+    export function MySecondModel() {
+        const { scene } = useGLTF(pisonay)
+        return (
+        <primitive object={scene} position={[1, 0, 0]} /> 
+        )
+    }
+    
+    function Box() {
+        return (
+        <div className="test">
+            <p>Les plantes sont des organismes photosynthétiques et autotrophes, caractérisés par des cellules végétales. Elles forment l'un des règnes des Eukaryota. Ce règne est un groupe monophylétique comprenant les plantes terrestres</p>
+        </div>
+        );
+    }
 
 export default View
