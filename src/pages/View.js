@@ -6,12 +6,10 @@ import { Html, Sky, Clone, useGLTF, OrbitControls, PerspectiveCamera } from '@re
 import { Vector3, BoxBufferGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, TextureLoader } from 'three';
 import Header from "../components/Header";
 import Texture from "../assets/Grass004_1K_Color.jpg"
-import huaranhuay from './models/huaranhuay.glb'
-import pisonay from './models/pisonay.glb'
+import huaranhuay from '../models/huaranhuay.glb'
+import pisonay from '../models/pisonay.glb'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import dataToImport from './data.json';
-import mydata from './data.json';
-
+import mydata from '../data.json'
 
 const View = () => {
     const [jsonData, setJsonData] = useState(null);

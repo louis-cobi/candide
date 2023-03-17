@@ -6,7 +6,7 @@
             2,
             4
         ],
-        "myTexture" : "./Grass004_1K_Color.jpg",
+        "myTexture" : "../assets/Grass004_1K_Color.jpg",
         "shape": "cylinder",
         "shapeWidth": 10,
         "shapeHeight": 10,
