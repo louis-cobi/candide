@@ -33,7 +33,7 @@ const View = () => {
     
     
         textureLoader.load(
-            Texture,
+            // Texture,
             (loadedTexture) => {
                 setTexture(loadedTexture);
                 // console.log(texture)
