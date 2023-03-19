@@ -13,7 +13,7 @@ import mydata from '../data.json'
 
 const View = () => {
     const [jsonData, setJsonData] = useState(null);
-    const [shape, setShape] = useState('cylinder')
+    const [shape, setShape] = useState(mydata.env.shape)
     const meshRef = useRef()
     const [texture, setTexture] = useState(null);
     const textureLoader = new TextureLoader();
@@ -27,28 +27,13 @@ const View = () => {
         setShape(shape === 'cylinder' ? 'box' : 'cylinder')
     }
 
-    // useEffect(() => {
-    //     console.log("json ", jsonData)
-        
-    //     textureLoader.load(
-    //         Texture,
-    //         (loadedTexture) => {
-    //             setTexture(loadedTexture);
-    //         },
-
-    //         undefined,
-    //         (error) => {
-    //             console.error(error);
-    //         }
-    //     );
-    // }, []);
 
     useEffect(() => {
         console.log("json ", mydata)
     
     
         textureLoader.load(
-            mydata.env.myTexture,
+            Texture,
             (loadedTexture) => {
                 setTexture(loadedTexture);
                 // console.log(texture)
@@ -87,11 +72,11 @@ const View = () => {
                             <meshBasicMaterial map={texture} />
                             {shape === 'cylinder' ? (
                                 <cylinderGeometry
-                                    args={[1, 1, 0.3, 32]}
+                                    args={mydata.env.cylinderGeometry}
                                 />
                             ) : (
                                     <boxBufferGeometry
-                                        args={[1.7, 0.3, 1]}
+                                        args={mydata.env.boxBufferGeometry}
                                     />
                                 )}
                         </mesh>

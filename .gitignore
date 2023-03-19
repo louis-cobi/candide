@@ -11,6 +11,10 @@
 # production
 /build
 
+#models
+src/models/huaranhuay.glb
+src/models/pisonay.glb
+
 # misc
 .DS_Store
 .env.local
