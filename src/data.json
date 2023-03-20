@@ -13,9 +13,9 @@
         "shapeDepth": 10,
         "camera": {
             "fov": 45,
-            "near": 1,
+            "near": 10,
             "far": 1000,
-            "position": [100, 35, 0.3, 32]
+            "position": [-10, 3, 25]
         },
         "cylinderGeometry": [60, 1, 0.3, 32],
         "boxBufferGeometry" :[100, 1, 100 ],
@@ -23,16 +23,16 @@
             "var1":100,
             "var2":10,
             "var3":100 
-        }
-
+        },
+        "x": 100,
+        "y": 100
     },
-
 
     "plants" : [
         {
-            "name" : "plant1",
-            "x" : 100,
-            "y" : 100,
+            "name" : "huaranhuay",
+            "x" : 30,
+            "y" : 70,
             "description" : {
                 "type" : "tree",
                 "size" : "big",
@@ -48,9 +48,9 @@
         },
 
         {
-            "name" : "plant2",
-            "x" : 200,
-            "y" : 200,
+            "name" : "pisonay",
+            "x" : 80,
+            "y" : 40,
             "description" : {
                 "type" : "flower",
                 "size" : "big",

@@ -21,7 +21,7 @@ import "./style.css";
 export default function App() {
   return (
     <Routes>
-      <Route path="/view" element={<View />} />
+      <Route path="/view" element={<View mydata={mydata}/>}/>
       <Route path="/" element={<Home />} />
     </Routes>
   )
