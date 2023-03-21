@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { useGLTF } from "@react-three/drei";
-import { useGraph } from '@react-three/fiber'
+import React, { useState, useEffect } from "react";
+import { useGLTF } from "@react-three/drei"
 
 const Plant = (props) => {
 

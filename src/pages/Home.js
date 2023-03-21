@@ -2,8 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import { Link } from 'react-router-dom';
 import { Canvas } from "@react-three/fiber"
-import { Html, Sky, Clone, useGLTF, OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { Vector3, BoxBufferGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, TextureLoader } from 'three';
+import {  Sky, OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Vector3 } from 'three';
 
 const Home = () => {
     return (
