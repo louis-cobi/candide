@@ -33,7 +33,7 @@ const Ground = (props) => {
   const ref = useRef();
 
   return (
-    <mesh {...props} ref={ref} scale={1}>
+    <mesh {...props} ref={ref} scale={1} >
       <boxGeometry args={mapSize} />
       <meshStandardMaterial
         {...propsMesh}

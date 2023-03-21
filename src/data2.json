@@ -6,8 +6,8 @@
             2,
             4
         ],
-        "myTexture" : "./assets/Grass004_1K_Color.jpg",
-        "shape": "box",
+        "myTexture" : "../assets/Grass004_1K_Color.jpg",
+        "shape": "cylinder",
         "shapeWidth": 10,
         "shapeHeight": 10,
         "shapeDepth": 10,
@@ -17,8 +17,6 @@
             "far": 1000,
             "position": [90, 15, 15]
         },
-        "cylinderGeometry": [60, 1, 0.3, 32],
-        "boxBufferGeometry" :[100, 1, 100 ],
         "light": {
             "var1":100,
             "var2":10,
@@ -31,7 +29,7 @@
     "plants" : [
         {
             "name" : "huaranhuay",
-            "x" : 30,
+            "x" : 50,
             "y" : 70,
             "description" : {
                 "type" : "tree",
@@ -48,8 +46,8 @@
         },
 
         {
-            "name" : "pisonay",
-            "x" : 80,
+            "name" : "huaranhuay",
+            "x" : 60,
             "y" : 40,
             "description" : {
                 "type" : "flower",
@@ -65,3 +63,4 @@
         }
     ]
 }
+

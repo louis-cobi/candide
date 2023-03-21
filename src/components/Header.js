@@ -3,20 +3,14 @@ import { Link } from 'react-router-dom'
 import logo from '../logo candide.svg';
 
 const Header = () => {
+
     return (
-        <header style={styles.header}>
+        <header className='header'>
             <Link to="/"><img src={logo} /></Link>
+            <Link to="/view" className='viewToggle'>Exemple 1</Link>
+            <Link to="/view2" className='viewToggle'>Exemple 2</Link>
         </header>
     )
-}
-
-const styles = {
-    header: {
-        backgroundColor: 'transparent',
-        position: 'absolute',
-        zIndex: 10,
-        padding: '30px'
-    }
 }
 
 export default Header

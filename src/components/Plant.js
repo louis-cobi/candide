@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useGraph } from '@react-three/fiber'
 
 const Plant = (props) => {
 
@@ -22,11 +23,24 @@ const Plant = (props) => {
     setPlantPosition([x, z, y]);
   };
 
+  const handleClick = (event) => {
+    // toggle shown state
+    const { plant, setIsShown, setDescription, isShown } = props
+    setDescription(plant)
+    setIsShown(!isShown);
+  };
+
+  const handleBlur = (event) => {
+    const { onClose } = props
+    onClose()
+  }
+
+
   const PlantModel = require("../models/" + `${props.plant.name}` + ".glb");
 
   const { scene } = useGLTF(PlantModel);
 
-  return <primitive object={scene} position={plantPosition} />;
+  return (<mesh onClick={handleClick} onBlur={handleBlur}><primitive object={scene} position={plantPosition} /></mesh>)
 };
 
 export default Plant;
