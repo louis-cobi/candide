@@ -2,8 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import { Link } from 'react-router-dom';
 import { Canvas } from "@react-three/fiber"
-import { Html, Sky, Clone, useGLTF, OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { Vector3, BoxBufferGeometry, CylinderGeometry, Mesh, MeshBasicMaterial, TextureLoader } from 'three';
+import {  Sky, OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Vector3 } from 'three';
 
 const Home = () => {
     return (
@@ -11,7 +11,7 @@ const Home = () => {
             <Header />
             <div style={styles.container}>
                 <h1 style={styles.title}>Bienvenue</h1>
-                <p style={styles.paragraph}>Candide est une solution digitale très simple qui vous permet de créer des compositions végétales.
+                <p style={styles.paragraph}>Candide est une solution digitale très simple quivous permet de créer des compositions végétales.
                 Tout cela dans le but de vous projet sur une
                 personnalisation de votre/vos parcelle(s).</p>
                 <Link to="/view" style={styles.button}>Commencez dès maintenant !</Link>
