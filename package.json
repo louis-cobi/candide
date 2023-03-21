@@ -1,6 +1,8 @@
 {
   "name": "candide",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": "Christopher BOLARD - Léo LABEAUME - Louis COBIGO - Manon LAVENIER",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.56.12",
