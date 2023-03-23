@@ -12,10 +12,10 @@ The Candide project offers a simple and easy-to-use user interface in high resol
   - **Status**:  1.0.0 Every change would be notified into [CHANGELOG](CHANGELOG.md).
 
 ## Visuals :framed_picture:
-![](candide.gif)
+![](plants.gif)
 
 ----
-## Dependencies
+## Dependencies :wrench:
 
 | Dependency | Version |
 | -------- | ------- |
@@ -58,7 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) than TADAM :sparkles: you ca
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-## Usage
+## Usage :books:
 As mentioned earlier, the main objective of this project is to represent data in 3D format. Therefore, all display is based on reading a data file that we created in JSON format.
 
 The Json should look like this :
@@ -66,17 +66,7 @@ The Json should look like this :
 ```
 {
     "env": {
-        "myTexture" : "../assets/Grass004_1K_Color.jpg",
-        "shape": "cylinder",
-        "shapeWidth": 10,
-        "shapeHeight": 10,
-        "shapeDepth": 10,
-        "camera": {
-            "fov": 45,
-            "near": 10,
-            "far": 1000,
-            "position": [90, 15, 15]
-        },
+        "type" : "sand"
         "light": {
             "var1":100,
             "var2":10,
@@ -126,15 +116,17 @@ The Json should look like this :
 ```
 | Variable | Explanation |
 | -------- | ------- |
+| "type" | For now grass or sand  |
 | "name" | Should be the same as the model  |
 | "x" | Represents its placement on the x-axis  |
 | "y" | Represents its placement on the y-axis  |
 
 ----
-## Known issues
+## Known issues :clipboard:
 
 - [ ] Increasing speed of loading
 - [ ] Adding new 3D models
+- [ ] Connect data to Vana 2.0 and Plantarium
 
 ## Getting help
 
@@ -167,6 +159,7 @@ If you have feedback on the project or want to discuss its direction, we encoura
 
 ----
 
-## Credits and references
+## Credits and references :link:
 
 Thanks to [https://www.vanaprincipia.fr/](https://www.vanaprincipia.fr/) for giving us this challenge. 
+Thanks to [Hanandess](https://www.vanaprincipia.fr/) for their 3D plants.
