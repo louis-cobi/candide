@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useGLTF } from "@react-three/drei"
 
 const Plant = (props) => {
@@ -39,7 +39,9 @@ const Plant = (props) => {
 
   const { scene } = useGLTF(PlantModel);
 
-  return (<mesh onClick={handleClick} onBlur={handleBlur}><primitive object={scene} position={plantPosition} /></mesh>)
+  const copiedScene = useMemo(() => scene.clone(), [scene])
+
+  return (<mesh onClick={handleClick} onBlur={handleBlur}><primitive object={copiedScene} position={plantPosition} /></mesh>)
 };
 
 export default Plant;
