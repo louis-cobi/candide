@@ -2,129 +2,171 @@
 # CANDIDE :deciduous_tree:
 
 ## Description :speech_balloon:
+
 Candide is an open source project that aims primarily to display terrains and plants in 3D based on previously provided data. It has its roots in another open source project called Vana Principia, which aims to provide a tool that can scan a terrain and provide the user with recommendations for plants that are suitable for their environment and how these will interact. (To know more about this project fill free to visite their website [https://www.vanaprincipia.fr/](https://www.vanaprincipia.fr/))
 
 The Candide project offers a simple and easy-to-use user interface in high resolution for the most immersive user experience possible. Users can explore different types of plants, such as trees, flowers... as well as their placement on specific terrains. They also have access to various data concerning all the displayed plants.
 
-Other things to include:
+  - **Authors**: Christopher BOLARD / Léo LABEAUME / Louis COBIGO / Manon LAVENIER
+  - **Technology stack**: This project is mainly based on React Three Fiber.
+  - **Status**:  1.0.0 Every change would be notified into [CHANGELOG](CHANGELOG.md).
 
-  - **Technology stack**: Indicate the technological nature of the software, including primary programming language(s) and whether the software is intended as standalone or as a module in a framework or other ecosystem.
-  - **Status**:  Alpha, Beta, 1.1, etc. It's OK to write a sentence, too. The goal is to let interested people know where this project is at. This is also a good place to link to the [CHANGELOG](CHANGELOG.md).
-  - Describe what sets this apart from related-projects. Linking to another doc or page is OK if this can't be expressed in a sentence or two.
+## Visuals :framed_picture:
+![](candide.gif)
 
-
-**Screenshot**: If the software has visual components, place a screenshot after the description; e.g.,
-
-![](https://raw.githubusercontent.com/cfpb/open-source-project-template/main/screenshot.png)
-
-
+----
 ## Dependencies
 
-Describe any dependencies that must be installed for this software to work.
-This includes programming languages, databases or other storage mechanisms, build tools, frameworks, and so forth.
-If specific versions of other software are required, or known not to work, call that out.
+| Dependency | Version |
+| -------- | ------- |
+| @react-three/drei | $^9.56.12    |
+| @react-three/fiber | ^8.10.1  |
+| @testing-library/jest-dom | ^5.16.5 |
+| @testing-library/react | ^13.4.0  |
+| @testing-library/user-event | ^13.5.0   |
+| @types/three | ^0.149.0  |
+| react | ^18.2.0 |
+| react-dom | ^18.2.0 |
+| react-router-dom | ^6.8.1 |
+| react-scripts | 5.0.1 |
+| three | ^0.149.0 |
+| web-vitals | ^2.1.4 |
 
 ## Installation :gear:
 
-If you're new to React Router, we recommend you start with the tutorial.
+### First thing first, you need to setup the project :
 
-### `npm install`
+1. Fork the repo (click the Fork button at the top right of this page)
+2. Clone your fork locally in a terminal
+3. cd to parent directory where you want your clone to be, 
+4. ```git clone https://github.com/<your_github_username>/candide.git```
+5. ```cd candide```
 
-### `npm start`
+
+### Once you have open the project in your favorite IDE open the terminal and run :
+
+**```npm install```** 
+
+Add a folder name ```models``` at the root then add all the necessary models.
+You can find all models in this drive :[Models files](https://drive.google.com/drive/folders/1D3G-_I8TR3O_4E8dm6BXLe3TgPDZHaIX?usp=share_link)
+
+**`npm start`**
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) than TADAM :sparkles: you can view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-## Configuration
-
-If the software is configurable, describe it in detail, either here or in other documentation to which you link.
-
 ## Usage
+As mentioned earlier, the main objective of this project is to represent data in 3D format. Therefore, all display is based on reading a data file that we created in JSON format.
 
-Show users how to use the software.
-Be specific.
-Use appropriate formatting when showing code snippets.
+The Json should look like this :
 
-## How to test the software
+```
+{
+    "env": {
+        "myTexture" : "../assets/Grass004_1K_Color.jpg",
+        "shape": "cylinder",
+        "shapeWidth": 10,
+        "shapeHeight": 10,
+        "shapeDepth": 10,
+        "camera": {
+            "fov": 45,
+            "near": 10,
+            "far": 1000,
+            "position": [90, 15, 15]
+        },
+        "light": {
+            "var1":100,
+            "var2":10,
+            "var3":100 
+        },
+        "x": 100,
+        "y": 100
+    },
 
-If the software includes automated tests, detail how to run those tests.
+    "plants" : [
+        {
+            "name" : "huaranhuay",
+            "x" : 30,
+            "y" : 70,
+            "description" : {
+                "type" : "tree",
+                "size" : "big",
+                "width" : 100,
+                "height" : 100,
+                "text" : "This is a tree",
+                "watering" : "once a week",
+                "wateringAmount" : "1 liter",
+                "flowering" : "2024-01-01",
+                "family" : "oak"
+            }
 
+        },
+
+        {
+            "name" : "pisonay",
+            "x" : 80,
+            "y" : 40,
+            "description" : {
+                "type" : "flower",
+                "size" : "big",
+                "width" : 100,
+                "height" : 100,
+                "text" : "This is a flower",
+                "watering" : "once a week",
+                "wateringAmount" : "1 liter",
+                "flowering" : "2024-01-01",
+                "family" : "oak"
+            }
+        }
+    ]
+}
+```
+| Variable | Explanation |
+| -------- | ------- |
+| "name" | Should be the same as the model  |
+| "x" | Represents its placement on the x-axis  |
+| "y" | Represents its placement on the y-axis  |
+
+----
 ## Known issues
 
-Document any known significant shortcomings with the software.
+- [ ] Increasing speed of loading
+- [ ] Adding new 3D models
 
 ## Getting help
-
-Instruct users how to get help with this software; this might include links to an issue tracker, wiki, mailing list, etc.
-
-**Example**
 
 If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker.
 
 ## Getting involved
 
-This section should detail why people should get involved and describe key areas you are
-currently focusing on; e.g., trying to get feedback on features, fixing certain bugs, building
-important pieces, etc.
+We welcome contributions from anyone interested in improving this project! There are a few ways to get involved:
 
-General instructions on _how_ to contribute should be stated with a link to [CONTRIBUTING](CONTRIBUTING.md).
+### Reporting Issues
+
+If you find a bug or have a suggestion for improving this project, please let us know by opening an issue on our GitHub repository. When you create an issue, please provide as much detail as possible about the problem or suggestion.
+
+### Contributing Code
+
+If you're interested in contributing code to this project, we recommend first reviewing our contributing guidelines [CONTRIBUTING](CONTRIBUTING.md). These guidelines provide information on our code style and how to submit a pull request.
+
+If you have an idea for a new feature or improvement that isn't covered by an existing issue, feel free to open a new issue to discuss the idea with the community and get feedback.
+
+### Providing Feedback
+
+If you have feedback on the project or want to discuss its direction, we encourage you to participate in our community forum. This is a great place to ask questions, share your thoughts on the project, and connect with other contributors and users.
 
 
 ----
 
 ## Open source licensing info
-1. [TERMS](TERMS.md)
-2. [LICENSE](LICENSE)
+2. This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 3. [CFPB Source Code Policy](https://github.com/cfpb/source-code-policy/)
-
 
 ----
 
 ## Credits and references
 
-1. Projects that inspired you
-2. Related projects
-3. Books, papers, talks, or other sources that have meaningful impact or influence on this project
-
+Thanks to [https://www.vanaprincipia.fr/](https://www.vanaprincipia.fr/) for giving us this challenge. 
