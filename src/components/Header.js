@@ -9,6 +9,7 @@ const Header = () => {
             <Link to="/"><img src={logo} /></Link>
             <Link to="/view" className='viewToggle'>Exemple 1</Link>
             <Link to="/view2" className='viewToggle'>Exemple 2</Link>
+            <Link to="/view3" className='viewToggle'>Exemple 3</Link>
         </header>
     )
 }

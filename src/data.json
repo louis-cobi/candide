@@ -1,24 +1,6 @@
 {
     "env": {
-        "type": "PerspectiveCamera",
-        "position": [
-            2,
-            2,
-            4
-        ],
-        "myTexture" : "./assets/Grass004_1K_Color.jpg",
-        "shape": "box",
-        "shapeWidth": 10,
-        "shapeHeight": 10,
-        "shapeDepth": 10,
-        "camera": {
-            "fov": 45,
-            "near": 10,
-            "far": 1000,
-            "position": [90, 15, 15]
-        },
-        "cylinderGeometry": [60, 1, 0.3, 32],
-        "boxBufferGeometry" :[100, 1, 100 ],
+        "type": "grass",
         "light": {
             "var1":100,
             "var2":10,
