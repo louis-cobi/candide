@@ -12,8 +12,7 @@
 /build
 
 #models
-src/models/huaranhuay.glb
-src/models/pisonay.glb
+src/models/
 
 # misc
 .DS_Store
