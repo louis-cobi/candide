@@ -4,13 +4,13 @@ import { useTexture } from "@react-three/drei"
 import grassColor from "../resources/Grass004_1K_Color.jpg"
 import grassAmbientOcclusion from "../resources/Grass004_1K_AmbientOcclusion.jpg"
 import grassDisplacement from "../resources/Grass004_1K_Displacement.jpg"
-import grassNormal from "../resources/Grass004_1K_NormalDX.jpg"
+import grassNormal from "../resources/Grass004_1K_NormalGL.jpg"
 import grassRoughness from "../resources/Grass004_1K_Roughness.jpg"
 //sand texture
 import sandColor from "../resources/sand_Color.jpg"
 import sandAmbientOcclusion from "../resources/sand_AmbientOcclusion.jpg"
 import sandDisplacement from "../resources/sand_Displacement.jpg"
-import sandNormal from "../resources/sand_NormalDX.jpg"
+import sandNormal from "../resources/sand_NormalGL.jpg"
 import sandRoughness from "../resources/sand_Roughness.jpg"
 
 const Ground = (props) => {
@@ -64,6 +64,8 @@ const Ground = (props) => {
       <boxGeometry args={mapSize} />
       <meshStandardMaterial
         {...propsMesh}
+        displacementScale={0}
+        displacementBias={0}
       />
     </mesh>
   );

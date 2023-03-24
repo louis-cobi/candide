@@ -39,9 +39,10 @@ const View = (props) => {
           <group>
             {/* All these are in the same group */}
             <Camera x={props.mydata.env.x} y={props.mydata.env.y} />
-            <OrbitControls makeDefault />
+            <OrbitControls makeDefault autoRotate autoRotateSpeed={1}/>
             <Ground x={props.mydata.env.x} y={props.mydata.env.y} type={props.mydata.env.type} />
-            <ambientLight />
+            <ambientLight intensity={0.7} />
+            <directionalLight />
             <Bounds>
               <SelectToZoom>
                 {props.mydata.plants.map((item, i) => (
